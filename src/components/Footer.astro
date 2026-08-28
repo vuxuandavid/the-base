@@ -1,0 +1,22 @@
+---
+import { navLinks } from '../data/menu';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-chalk text-cream px-6 pt-[50px] pb-[26px] border-t-[3px] border-umber">
+  <div class="max-w-[1180px] mx-auto">
+    <div
+      class="flex justify-between items-start flex-wrap gap-6 pb-7 border-b border-line mb-5"
+    >
+      <div class="font-display uppercase text-[28px]">The Base</div>
+      <div class="flex gap-6 mono text-[12px]">
+        {navLinks.map((link) => <a href={link.href} class="hover:text-amber">{link.label}</a>)}
+        <a href="#" class="hover:text-amber">Instagram</a>
+      </div>
+    </div>
+    <div class="flex justify-between flex-wrap gap-2.5 mono text-[11px] text-cream-dim">
+      <span>© {year} THE BASE BÁNH MÌ · JEDEN TAG FRISCH</span>
+      <span>NGON · BỔ · RẺ</span>
+    </div>
+  </div>
+</footer>

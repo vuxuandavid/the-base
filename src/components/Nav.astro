@@ -1,0 +1,79 @@
+---
+import { navLinks } from '../data/menu';
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-4 px-6 py-4 bg-chalk border-b-[3px] border-umber"
+>
+  <div class="flex items-center gap-2 font-display text-cream text-[21px] uppercase tracking-wide">
+    THE BASE
+    <span class="mono text-[10px] text-amber border border-amber px-1.5 py-0.5">BÁNH MÌ</span>
+  </div>
+
+  <div class="hidden md:flex gap-8 mono text-[13px]">
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-cream-dim border-b-2 border-transparent pb-0.5 transition-colors duration-150 hover:border-chili hover:text-cream"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+
+  <a
+    href="#besuch"
+    class="hidden sm:inline-block mono text-[12px] text-chalk bg-amber border-2 border-cream px-4 py-2.5 transition-colors hover:bg-cream"
+  >
+    Jetzt bestellen
+  </a>
+
+  <button
+    id="nav-burger"
+    aria-expanded="false"
+    aria-controls="nav-mobile"
+    class="md:hidden mono text-[12px] text-cream-dim border-2 border-cream-dim px-2.5 py-2"
+  >
+    MENÜ
+  </button>
+
+  <div
+    id="nav-mobile"
+    class="hidden md:hidden absolute top-full left-0 right-0 flex-col bg-chalk border-b-[3px] border-umber"
+  >
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mono text-[13px] text-cream-dim px-6 py-4 border-t border-line hover:text-cream"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <a href="#besuch" class="mono text-[13px] text-chalk bg-amber px-6 py-4 border-t border-line">
+      Jetzt bestellen
+    </a>
+  </div>
+</nav>
+
+<script>
+  const burger = document.getElementById('nav-burger');
+  const mobile = document.getElementById('nav-mobile');
+
+  burger?.addEventListener('click', () => {
+    const isOpen = mobile?.classList.toggle('flex');
+    mobile?.classList.toggle('hidden');
+    burger.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+
+  mobile?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => {
+      mobile.classList.add('hidden');
+      mobile.classList.remove('flex');
+      burger?.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>

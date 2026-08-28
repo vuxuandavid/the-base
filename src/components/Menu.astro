@@ -1,0 +1,30 @@
+---
+import SectionHead from './SectionHead.astro';
+import MenuCard from './MenuCard.astro';
+import DrinkCard from './DrinkCard.astro';
+import { signatures, drinks } from '../data/menu';
+---
+
+<section id="karte" class="w-full py-[88px] px-6 bg-chalk text-cream">
+  <div class="max-w-[1180px] mx-auto">
+    <SectionHead
+      kicker="DIE 3 SIGNATURES"
+      title="Frisch. Bánh Mì."
+      borderClass="border-cream-dim"
+      headingClass="text-cream"
+    >
+      <p class="mono text-[12px] text-cream-dim max-w-[260px]">
+        JEDES BÁNH MÌ WIRD FRISCH BELEGT UND HEISS SERVIERT.
+      </p>
+    </SectionHead>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-umber border-2 border-umber mb-[60px]">
+      {signatures.map((item) => <MenuCard item={item} />)}
+    </div>
+
+    <h3 class="font-display uppercase text-[26px] text-cream mb-6">Hausgemachte Getränke</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0.5 bg-umber border-2 border-umber">
+      {drinks.map((drink) => <DrinkCard drink={drink} />)}
+    </div>
+  </div>
+</section>

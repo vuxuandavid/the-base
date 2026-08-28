@@ -1,0 +1,26 @@
+---
+import SectionHead from './SectionHead.astro';
+import { thanksList } from '../data/menu';
+---
+
+<section class="w-full py-[88px] px-6 bg-chalk text-cream">
+  <div class="max-w-[1180px] mx-auto">
+    <SectionHead
+      kicker="MIT DANK AN"
+      title="Ohne euch kein Base"
+      borderClass="border-violet"
+      headingClass="text-cream"
+      kickerClass="text-chili"
+    />
+    <div class="flex flex-wrap gap-3.5">
+      {
+        thanksList.map((entry) => (
+          <span class="mono text-[13px] normal-case tracking-normal border border-violet text-cream-dim px-4 py-2.5">
+            <b class="text-violet not-italic">{entry.name}</b> — {entry.note}
+          </span>
+        ))
+      }
+    </div>
+    <p class="mt-6 font-script text-[20px] text-amber">Danke für alles, Mama!</p>
+  </div>
+</section>

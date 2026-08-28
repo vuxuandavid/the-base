@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
+import wallArtImage from '../assets/images/wall-art.jpg';
+---
+
+<section id="geschichte" class="w-full py-[88px] px-6 bg-ochre text-cream">
+  <div class="max-w-[1180px] mx-auto">
+    <SectionHead
+      kicker="UNSERE GESCHICHTE"
+      title="Warum The Base"
+      borderClass="border-cream-dim"
+      headingClass="text-cream"
+    />
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start mb-14">
+      <div>
+        <h3 class="font-display uppercase text-[clamp(24px,3vw,32px)] leading-tight text-amber mb-5">
+          Gutes Essen sollte kein Luxus sein.
+        </h3>
+        <div class="bg-[rgba(20,14,9,0.35)] border-l-4 border-amber px-6 py-5 font-script text-[19px] text-cream mb-5">
+          „Ich habe damals eine Doku über die Goldies gesehen, in der Vladi erzählte, wie er
+          geiles Essen zu einem für jeden erschwinglichen Preis anbieten wollte. Das habe ich
+          sehr gefühlt — und als Leitfaden genommen."
+        </div>
+        <p class="text-[16px] text-[#f1e6d3] mb-4 leading-relaxed">
+          The Base steht für Qualität und kulinarischen Genuss und für die Überzeugung, dass
+          hochklassiges Essen nicht teuer sein muss. Aus unserer Freundschaft und der Vision, ein
+          neues, gesundes Fastfood auf dem deutschen Markt zu etablieren, wurde die Idee geboren:
+          ein Bánh Mì, das genauso beliebt wird wie Pizza, Burger, Currywurst mit Pommes oder
+          Döner.
+        </p>
+        <p class="text-[16px] text-[#f1e6d3] leading-relaxed">
+          Wir waren uns einig: Es sollte schmackhaft, gesund, sättigend und günstig sein — ganz
+          nach dem vietnamesischen Sprichwort „Ngon, Bổ, Rẻ".
+        </p>
+      </div>
+      <Image
+        class="w-full border-4 border-umber"
+        src={wallArtImage}
+        alt="Wand mit vietnamesischen Bildern im Restaurant"
+        widths={[400, 800, 1200]}
+        sizes="(min-width: 1024px) 560px, 100vw"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-umber border-2 border-umber">
+      <div class="bg-ochre-dark p-8">
+        <h4 class="font-display uppercase text-amber text-[20px] mb-3.5">
+          Vom Baguette zum Bánh Mì
+        </h4>
+        <p class="text-[14.5px] text-cream-dim leading-relaxed">
+          Das Bánh Mì ist ein vietnamesischer Klassiker, der aus der französischen Küche
+          entsprungen ist. Das Baguette der Franzosen wurde übernommen — dem Teig wurde
+          Reismehl beigemischt, um die teuren Weizenmehl-Importe zu strecken. Statt Käse und
+          Schinken kamen eigene Wurstsorten, eingelegtes Gemüse, frische Kräuter, ein Schuss
+          Fischsauce und Mayonnaise dazu. So wurde ein wahrer Fusionskracher geboren.
+        </p>
+      </div>
+      <div class="bg-ochre-dark p-8">
+        <h4 class="font-display uppercase text-amber text-[20px] mb-3.5">100% authentisch wir</h4>
+        <p class="text-[14.5px] text-cream-dim leading-relaxed">
+          Für den Inhalt unserer Sandwiches haben wir Streetfood-Videos aus aller Welt studiert
+          und unsere eigenen Rezepte eingebracht. So entstanden unsere drei Signatures. Unsere
+          vietnamesischen Wurzeln waren die Inspiration — doch Kochen kennt keine Grenzen, also
+          floss alles ein, was wir über die Jahre in der Gastronomie gelernt haben.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

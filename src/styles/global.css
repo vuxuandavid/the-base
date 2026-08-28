@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts (zero third-party requests) — only the weights we use */
+@import "@fontsource/anton/400.css";
+@import "@fontsource/kalam/400.css";
+@import "@fontsource/kalam/700.css";
+@import "@fontsource/archivo/400.css";
+@import "@fontsource/archivo/500.css";
+@import "@fontsource/archivo/600.css";
+@import "@fontsource/archivo/800.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+
+@theme {
+  --font-display: "Anton", sans-serif;
+  --font-script: "Kalam", cursive;
+  --font-sans: "Archivo", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-ochre: #7c5a34;
+  --color-ochre-dark: #4a3420;
+  --color-umber: #2b1d12;
+  --color-chalk: #181310;
+  --color-amber: #e2a13c;
+  --color-chili: #c1352a;
+  --color-violet: #9b5fc0;
+  --color-cream: #f3e8d6;
+  --color-cream-dim: #d8c7a8;
+  --color-line: rgb(243 232 214 / 0.18);
+
+  --animate-marquee: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-umber font-sans antialiased;
+  }
+  img {
+    @apply block max-w-full object-cover;
+  }
+  a {
+    color: inherit;
+  }
+  .display {
+    @apply font-display uppercase tracking-tight;
+    line-height: 0.86;
+    letter-spacing: -0.01em;
+  }
+  .mono {
+    @apply font-mono uppercase;
+    letter-spacing: 0.04em;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .animate-marquee {
+      animation: none;
+    }
+  }
+}

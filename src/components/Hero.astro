@@ -1,0 +1,69 @@
+---
+import { getImage } from 'astro:assets';
+import heroSource from '../assets/images/iron-bacon.jpg';
+import { marqueeItems } from '../data/menu';
+
+const items = [...marqueeItems, ...marqueeItems];
+const heroImage = await getImage({ src: heroSource, width: 1920, format: 'webp', quality: 75 });
+---
+
+<section class="relative pt-[160px] px-6 overflow-hidden">
+  <div
+    class="absolute inset-0 -z-10 bg-cover bg-[center_65%]"
+    style={`background-image: linear-gradient(180deg, rgba(20,14,9,0.55), rgba(20,14,9,0.86)), url('${heroImage.src}'); background-color: var(--color-umber);`}
+  >
+  </div>
+
+  <div class="max-w-[1180px] mx-auto pb-[70px]">
+    <div
+      class="inline-flex items-center gap-2 mono text-[12px] text-cream-dim border border-cream-dim px-3 py-1.5 mb-6 before:content-['●'] before:text-chili"
+    >
+      FRISCH TÄGLICH GEBACKEN
+    </div>
+
+    <h1
+      class="display text-cream text-[clamp(64px,11vw,150px)] mb-6 [text-shadow:6px_6px_0_var(--color-chili)]"
+    >
+      The<br />Base
+    </h1>
+
+    <p class="font-medium text-cream-dim text-[19px] max-w-[480px] mb-8 leading-relaxed">
+      Bánh Mì, das genauso beliebt werden soll wie Pizza, Burger, Currywurst mit Pommes oder
+      Döner. Ehrlich zusammengestellt, ordentlich gefüllt — und für alle bezahlbar.
+    </p>
+
+    <div class="inline-flex flex-col gap-0.5 border-l-[3px] border-amber pl-4 py-1.5 mb-9">
+      <span class="font-display text-amber text-[22px] tracking-wide">Ngon. Bổ. Rẻ.</span>
+      <span class="mono text-[12px] text-cream-dim"
+        >Lecker · Nahrhaft · Günstig — das vietnamesische Sprichwort, nach dem wir kochen</span
+      >
+    </div>
+
+    <div class="flex gap-4 flex-wrap">
+      <a
+        href="#karte"
+        class="mono text-[13px] text-cream bg-chili border-2 border-cream px-6 py-4 shadow-[4px_4px_0_var(--color-umber)] transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--color-umber)]"
+      >
+        Zur Karte
+      </a>
+      <a
+        href="#geschichte"
+        class="mono text-[13px] text-cream bg-transparent border-2 border-cream-dim px-6 py-4 transition-colors hover:border-cream"
+      >
+        Unsere Geschichte
+      </a>
+    </div>
+  </div>
+
+  <div class="bg-chalk border-t-[3px] border-b-[3px] border-umber overflow-hidden py-3.5">
+    <div class="flex w-max animate-marquee">
+      {
+        items.map((item) => (
+          <span class="mono text-[14px] text-cream-dim px-5 whitespace-nowrap after:content-['//'] after:text-chili after:ml-5">
+            {item}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>

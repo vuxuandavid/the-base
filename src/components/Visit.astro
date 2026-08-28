@@ -1,0 +1,63 @@
+---
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="besuch" class="w-full py-[88px] px-6 bg-cream">
+  <div class="max-w-[1180px] mx-auto">
+    <SectionHead kicker="VORBEIKOMMEN" title="Besucht The Base" />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-umber border-2 border-umber">
+      <div class="bg-cream p-9">
+        <a
+          href="https://maps.google.com/?q=Oranienburger+Str.+6,+10178+Berlin"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-display uppercase text-[26px] mb-1.5 block hover:text-chili transition-colors"
+        >
+          Oranienburger Str. 6
+        </a>
+        <p class="mono text-[12px] text-chili mb-7">10178 Berlin</p>
+        <table class="w-full border-collapse font-mono text-[14px]">
+          <tbody>
+            <tr class="border-b border-dashed border-[rgba(43,29,18,0.2)]">
+              <td class="py-2.5">Mo – Sa</td>
+              <td class="py-2.5 text-right">12:00 – 21:00</td>
+            </tr>
+            <tr class="border-b border-dashed border-[rgba(43,29,18,0.2)]">
+              <td class="py-2.5">Sonntag</td>
+              <td class="py-2.5 text-right">Geschlossen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-ochre text-cream p-9">
+        <p class="font-display uppercase text-[26px] mb-1.5">Kontakt</p>
+        <p class="mono text-[12px] text-amber mb-7">Abholung &amp; Anfragen</p>
+        <table class="w-full border-collapse font-mono text-[14px]">
+          <tbody>
+            <tr class="border-b border-dashed border-[rgba(243,232,214,0.3)]">
+              <td class="py-2.5">Telefon</td>
+              <td class="py-2.5 text-right">
+                <a href="tel:+4915207078161" class="hover:text-amber transition-colors"
+                  >01520 7078161</a
+                >
+              </td>
+            </tr>
+            <tr class="border-b border-dashed border-[rgba(243,232,214,0.3)]">
+              <td class="py-2.5">E-Mail</td>
+              <td class="py-2.5 text-right">
+                <a href="mailto:hello@thebasebanhmi.de" class="hover:text-amber transition-colors"
+                  >hello@thebasebanhmi.de</a
+                >
+              </td>
+            </tr>
+            <tr class="border-b border-dashed border-[rgba(243,232,214,0.3)]">
+              <td class="py-2.5">Kartenzahlung</td>
+              <td class="py-2.5 text-right">ab 10 €</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

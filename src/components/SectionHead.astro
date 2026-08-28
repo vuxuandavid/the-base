@@ -1,0 +1,30 @@
+---
+interface Props {
+  kicker: string;
+  title: string;
+  borderClass?: string;
+  headingClass?: string;
+  kickerClass?: string;
+}
+
+const {
+  kicker,
+  title,
+  borderClass = 'border-umber',
+  headingClass = 'text-umber',
+  kickerClass = 'text-chili',
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    'flex items-baseline justify-between flex-wrap gap-3 mb-12 border-b-[3px] pb-4',
+    borderClass,
+  ]}
+>
+  <div>
+    <div class:list={['mono text-[12px] tracking-widest', kickerClass]}>{kicker}</div>
+    <h2 class:list={['display text-[clamp(32px,5vw,54px)] mt-1.5', headingClass]}>{title}</h2>
+  </div>
+  <slot />
+</div>

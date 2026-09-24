@@ -1,62 +1,76 @@
 ---
 import SectionHead from './SectionHead.astro';
+
+const rowClass = 'flex flex-wrap justify-between gap-x-4 gap-y-1 py-2.5 border-b border-dashed';
 ---
 
-<section id="besuch" class="w-full py-[88px] px-6 bg-cream">
+<section id="besuch" class="w-full py-[88px] px-6 bg-cream scroll-mt-20">
   <div class="max-w-[1180px] mx-auto">
     <SectionHead kicker="VORBEIKOMMEN" title="Besucht The Base" />
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-umber border-2 border-umber">
-      <div class="bg-cream p-9">
+      <div class="bg-cream p-6 sm:p-9">
         <a
-          href="https://maps.google.com/?q=Oranienburger+Str.+6,+10178+Berlin"
+          href="https://maps.app.goo.gl/ktEgZcMCyHr69x5z9"
           target="_blank"
           rel="noopener noreferrer"
-          class="font-display uppercase text-[26px] mb-1.5 block hover:text-chili transition-colors"
+          aria-label="The Base auf Google Maps öffnen, Bewertungen ansehen"
+          class="inline-flex items-center gap-2 font-display uppercase text-[22px] sm:text-[26px] leading-tight mb-1.5 hover:text-chili transition-colors"
         >
-          Oranienburger Str. 6
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-6 h-6 shrink-0"
+            aria-hidden="true"
+          >
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Oranienburger <span class="whitespace-nowrap">Str. 6</span></span>
         </a>
         <p class="mono text-[12px] text-chili mb-7">10178 Berlin</p>
-        <table class="w-full border-collapse font-mono text-[14px]">
-          <tbody>
-            <tr class="border-b border-dashed border-[rgba(43,29,18,0.2)]">
-              <td class="py-2.5">Mo – Sa</td>
-              <td class="py-2.5 text-right">12:00 – 21:00</td>
-            </tr>
-            <tr class="border-b border-dashed border-[rgba(43,29,18,0.2)]">
-              <td class="py-2.5">Sonntag</td>
-              <td class="py-2.5 text-right">Geschlossen</td>
-            </tr>
-          </tbody>
-        </table>
+        <dl class="font-mono text-[14px]">
+          <div class:list={[rowClass, 'border-[rgba(43,29,18,0.2)]']}>
+            <dt>Mo - Sa</dt>
+            <dd>12:00 - 21:00</dd>
+          </div>
+          <div class:list={[rowClass, 'border-[rgba(43,29,18,0.2)]']}>
+            <dt>Sonntag</dt>
+            <dd>Geschlossen</dd>
+          </div>
+        </dl>
       </div>
-      <div class="bg-ochre text-cream p-9">
-        <p class="font-display uppercase text-[26px] mb-1.5">Kontakt</p>
+      <div class="bg-ochre text-cream p-6 sm:p-9">
+        <p class="font-display uppercase text-[22px] sm:text-[26px] mb-1.5">Kontakt</p>
         <p class="mono text-[12px] text-amber mb-7">Abholung &amp; Anfragen</p>
-        <table class="w-full border-collapse font-mono text-[14px]">
-          <tbody>
-            <tr class="border-b border-dashed border-[rgba(243,232,214,0.3)]">
-              <td class="py-2.5">Telefon</td>
-              <td class="py-2.5 text-right">
-                <a href="tel:+4915207078161" class="hover:text-amber transition-colors"
-                  >01520 7078161</a
-                >
-              </td>
-            </tr>
-            <tr class="border-b border-dashed border-[rgba(243,232,214,0.3)]">
-              <td class="py-2.5">E-Mail</td>
-              <td class="py-2.5 text-right">
-                <a href="mailto:hello@thebasebanhmi.de" class="hover:text-amber transition-colors"
-                  >hello@thebasebanhmi.de</a
-                >
-              </td>
-            </tr>
-            <tr class="border-b border-dashed border-[rgba(243,232,214,0.3)]">
-              <td class="py-2.5">Kartenzahlung</td>
-              <td class="py-2.5 text-right">ab 10 €</td>
-            </tr>
-          </tbody>
-        </table>
+        <dl class="font-mono text-[14px]">
+          <div class:list={[rowClass, 'border-[rgba(243,232,214,0.3)]']}>
+            <dt>Telefon</dt>
+            <dd>
+              <a href="tel:+4915207078161" class="hover:text-amber transition-colors whitespace-nowrap"
+                >01520 7078161</a
+              >
+            </dd>
+          </div>
+          <div class:list={[rowClass, 'border-[rgba(243,232,214,0.3)]']}>
+            <dt>E-Mail</dt>
+            <dd class="min-w-0">
+              <a
+                href="mailto:hello@thebasebanhmi.de"
+                class="hover:text-amber transition-colors break-all">hello@thebasebanhmi.de</a
+              >
+            </dd>
+          </div>
+          <div class:list={[rowClass, 'border-[rgba(243,232,214,0.3)]']}>
+            <dt>Kartenzahlung</dt>
+            <dd>ab 10 €</dd>
+          </div>
+        </dl>
       </div>
     </div>
   </div>

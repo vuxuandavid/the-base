@@ -1,5 +1,5 @@
 ---
-import { navLinks } from '../data/menu';
+import { navLinks, legalLinks } from '../data/menu';
 const year = new Date().getFullYear();
 ---
 
@@ -8,10 +8,16 @@ const year = new Date().getFullYear();
     <div
       class="flex justify-between items-start flex-wrap gap-6 pb-7 border-b border-line mb-5"
     >
-      <div class="font-display uppercase text-[28px]">The Base</div>
-      <div class="flex gap-6 mono text-[12px]">
+      <div translate="no" class="font-display uppercase text-[28px]">The Base</div>
+      <div class="flex gap-6 mono text-[12px] flex-wrap">
         {navLinks.map((link) => <a href={link.href} class="hover:text-amber">{link.label}</a>)}
-        <a href="#" class="hover:text-amber">Instagram</a>
+        <a
+          href="https://www.instagram.com/banhmibase"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-amber">Instagram</a
+        >
+        {legalLinks.map((link) => <a href={link.href} class="hover:text-amber">{link.label}</a>)}
       </div>
     </div>
     <div class="flex justify-between flex-wrap gap-2.5 mono text-[11px] text-cream-dim">

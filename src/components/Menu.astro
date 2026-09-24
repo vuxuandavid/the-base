@@ -2,14 +2,20 @@
 import SectionHead from './SectionHead.astro';
 import MenuCard from './MenuCard.astro';
 import DrinkCard from './DrinkCard.astro';
+import ScrollRevealText from './ScrollRevealText.astro';
 import { signatures, drinks } from '../data/menu';
 ---
 
-<section id="karte" class="w-full py-[88px] px-6 bg-chalk text-cream">
+<section id="karte" class="w-full py-[88px] px-6 bg-chalk text-cream scroll-mt-20">
   <div class="max-w-[1180px] mx-auto">
+    <ScrollRevealText
+      text="Wir wollten ein Bánh Mì machen, das man genauso gern isst wie eine Pizza oder einen Döner. Schnell auf die Hand, frisch belegt mit Zutaten, deren Geschmack sorgfältig aufeinander abgestimmt konstruiert wurde."
+      class="font-display uppercase text-cream text-[clamp(26px,4vw,48px)] leading-[1.08] max-w-[920px] mb-16"
+    />
+
     <SectionHead
       kicker="DIE 3 SIGNATURES"
-      title="Frisch. Bánh Mì."
+      title="Jeder Bissen ein Genuss."
       borderClass="border-cream-dim"
       headingClass="text-cream"
     >
@@ -18,12 +24,12 @@ import { signatures, drinks } from '../data/menu';
       </p>
     </SectionHead>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-umber border-2 border-umber mb-[60px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-[60px]">
       {signatures.map((item) => <MenuCard item={item} />)}
     </div>
 
     <h3 class="font-display uppercase text-[26px] text-cream mb-6">Hausgemachte Getränke</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0.5 bg-umber border-2 border-umber">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {drinks.map((drink) => <DrinkCard drink={drink} />)}
     </div>
   </div>

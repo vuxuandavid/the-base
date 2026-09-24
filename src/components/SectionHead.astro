@@ -5,6 +5,7 @@ interface Props {
   borderClass?: string;
   headingClass?: string;
   kickerClass?: string;
+  level?: 'h1' | 'h2';
 }
 
 const {
@@ -13,7 +14,10 @@ const {
   borderClass = 'border-umber',
   headingClass = 'text-umber',
   kickerClass = 'text-chili',
+  level = 'h2',
 } = Astro.props;
+
+const Heading = level;
 ---
 
 <div
@@ -24,7 +28,9 @@ const {
 >
   <div>
     <div class:list={['mono text-[12px] tracking-widest', kickerClass]}>{kicker}</div>
-    <h2 class:list={['display text-[clamp(32px,5vw,54px)] mt-1.5', headingClass]}>{title}</h2>
+    <Heading class:list={['display leading-none text-[clamp(32px,5vw,54px)] mt-1.5 text-balance', headingClass]}>
+      {title}
+    </Heading>
   </div>
   <slot />
 </div>

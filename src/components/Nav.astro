@@ -5,7 +5,10 @@ import { navLinks } from '../data/menu';
 <nav
   class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-4 px-6 py-4 bg-chalk border-b-[3px] border-umber"
 >
-  <div class="flex items-center gap-2 font-display text-cream text-[21px] uppercase tracking-wide">
+  <div
+    translate="no"
+    class="flex items-center gap-2 font-display text-cream text-[21px] uppercase tracking-wide"
+  >
     THE BASE
     <span class="mono text-[10px] text-amber border border-amber px-1.5 py-0.5">BÁNH MÌ</span>
   </div>
@@ -23,18 +26,19 @@ import { navLinks } from '../data/menu';
     }
   </div>
 
-  <a
-    href="#besuch"
-    class="hidden sm:inline-block mono text-[12px] text-chalk bg-amber border-2 border-cream px-4 py-2.5 transition-colors hover:bg-cream"
+  <button
+    type="button"
+    data-order-trigger
+    class="hidden sm:inline-block mono text-[12px] text-chalk bg-amber border-2 border-cream px-4 py-2.5 transition-colors hover:bg-cream cursor-pointer"
   >
     Jetzt bestellen
-  </a>
+  </button>
 
   <button
     id="nav-burger"
     aria-expanded="false"
     aria-controls="nav-mobile"
-    class="md:hidden mono text-[12px] text-cream-dim border-2 border-cream-dim px-2.5 py-2"
+    class="md:hidden mono text-[12px] text-cream-dim border-2 border-cream-dim px-2.5 py-2 transition-colors hover:text-cream hover:border-cream"
   >
     MENÜ
   </button>
@@ -53,15 +57,72 @@ import { navLinks } from '../data/menu';
         </a>
       ))
     }
-    <a href="#besuch" class="mono text-[13px] text-chalk bg-amber px-6 py-4 border-t border-line">
+    <button
+      type="button"
+      data-order-trigger
+      class="mono text-[13px] text-chalk bg-amber px-6 py-4 border-t border-line text-left cursor-pointer transition-colors hover:bg-cream"
+    >
       Jetzt bestellen
-    </a>
+    </button>
   </div>
 </nav>
+
+<div
+  id="order-modal"
+  data-order-modal
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="order-modal-title"
+  class="hidden fixed inset-0 z-[100] items-center justify-center p-6 bg-[rgba(20,14,9,0.8)]"
+>
+  <div class="relative w-full max-w-[420px] bg-chalk border-2 border-cream-dim p-8 overscroll-contain">
+    <button
+      type="button"
+      aria-label="Schließen"
+      data-order-close
+      class="absolute top-3 right-3 mono text-[12px] text-cream-dim hover:text-cream border border-cream-dim px-2 py-1 cursor-pointer"
+    >
+      ✕
+    </button>
+    <p class="mono text-[12px] text-amber mb-1.5">Jetzt bestellen</p>
+    <h3 id="order-modal-title" class="font-display uppercase text-cream text-[26px] mb-6">
+      Wo möchtet ihr bestellen?
+    </h3>
+    <div class="flex flex-col gap-3">
+      <a
+        href="https://www.ubereats.com/de/store/the-base-banh-mi-sandwich-aus-vietnam/WHC9mK2iXpu9emnROOGqWw?srsltid=AfmBOopWCcTd8KtrmEfh3yawlIyGQQb8s3N5HDep-jsA2qdJnhrOZCV3"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mono text-[13px] text-center text-cream bg-[#06C167] border-2 border-cream px-5 py-3.5 transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5"
+      >
+        Uber Eats
+      </a>
+      <a
+        href="https://www.lieferando.de/speisekarte/banh-mi-base"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mono text-[13px] text-center text-chalk bg-[#FF8000] border-2 border-cream px-5 py-3.5 transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5"
+      >
+        Lieferando
+      </a>
+      <a
+        href="https://wolt.com/de/deu/berlin/restaurant/the-base-bnh-m-sandwich-aus-vietnam?srsltid=AfmBOopiPVdgG3k25w0HaPNFtsp7pOiChwLXtVGO7RtOLw_9m9r-Ov9-"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mono text-[13px] text-center text-chalk bg-[#00C2E8] border-2 border-cream px-5 py-3.5 transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5"
+      >
+        Wolt
+      </a>
+    </div>
+  </div>
+</div>
 
 <script>
   const burger = document.getElementById('nav-burger');
   const mobile = document.getElementById('nav-mobile');
+  const orderModal = document.getElementById('order-modal');
+  const orderTriggers = document.querySelectorAll('[data-order-trigger]');
+  const orderClose = document.querySelector('[data-order-close]');
 
   burger?.addEventListener('click', () => {
     const isOpen = mobile?.classList.toggle('flex');
@@ -76,4 +137,63 @@ import { navLinks } from '../data/menu';
       burger?.setAttribute('aria-expanded', 'false');
     })
   );
+
+  let lastFocused: HTMLElement | null = null;
+
+  function getFocusable(): HTMLElement[] {
+    if (!orderModal) return [];
+    return Array.from(
+      orderModal.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+    );
+  }
+
+  function openOrderModal(event: Event) {
+    lastFocused = event.currentTarget as HTMLElement;
+    orderModal?.classList.remove('hidden');
+    orderModal?.classList.add('flex');
+    mobile?.classList.add('hidden');
+    mobile?.classList.remove('flex');
+    burger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = 'hidden';
+    getFocusable()[0]?.focus();
+  }
+
+  function closeOrderModal() {
+    orderModal?.classList.add('hidden');
+    orderModal?.classList.remove('flex');
+    document.body.style.overflow = '';
+    lastFocused?.focus();
+  }
+
+  function isOrderModalOpen() {
+    return orderModal?.classList.contains('flex') ?? false;
+  }
+
+  orderTriggers.forEach((btn) => btn.addEventListener('click', openOrderModal));
+  orderClose?.addEventListener('click', closeOrderModal);
+  orderModal?.addEventListener('click', (e) => {
+    if (e.target === orderModal) closeOrderModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!isOrderModalOpen()) return;
+
+    if (e.key === 'Escape') {
+      closeOrderModal();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      const focusable = getFocusable();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
 </script>

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const {
-  title = 'The Base — Bánh Mì in Berlin',
+  title = 'The Base - Bánh Mì in Berlin',
   description = 'The Base bringt vietnamesisches Bánh Mì nach Berlin: frisch belegt, ehrlich zusammengestellt, für alle bezahlbar. Ngon. Bổ. Rẻ.',
 } = Astro.props;
 ---
@@ -30,6 +30,12 @@ const {
     <slot name="head" />
   </head>
   <body>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] mono text-[13px] text-chalk bg-cream border-2 border-chalk px-4 py-2.5"
+    >
+      Zum Inhalt springen
+    </a>
     <slot />
   </body>
 </html>

@@ -54,6 +54,11 @@
   a {
     color: inherit;
   }
+  a,
+  button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
   .display {
     @apply font-display uppercase tracking-tight;
     line-height: 0.86;

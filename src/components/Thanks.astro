@@ -7,20 +7,20 @@ import { thanksList } from '../data/menu';
   <div class="max-w-[1180px] mx-auto">
     <SectionHead
       kicker="MIT DANK AN"
-      title="Ohne euch kein Base"
-      borderClass="border-violet"
+      title="Ohne euch keine Base"
+      borderClass="border-amber"
       headingClass="text-cream"
       kickerClass="text-chili"
     />
-    <div class="flex flex-wrap gap-3.5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {
         thanksList.map((entry) => (
-          <span class="mono text-[13px] normal-case tracking-normal border border-violet text-cream-dim px-4 py-2.5">
-            <b class="text-violet not-italic">{entry.name}</b> — {entry.note}
-          </span>
+          <div class="bg-ochre-dark border-l-4 border-amber px-6 py-5">
+            <p class="font-display uppercase text-amber text-[18px] mb-2">{entry.name}</p>
+            <p class="text-[14.5px] text-cream-dim leading-relaxed">{entry.note}</p>
+          </div>
         ))
       }
     </div>
-    <p class="mt-6 font-script text-[20px] text-amber">Danke für alles, Mama!</p>
   </div>
 </section>

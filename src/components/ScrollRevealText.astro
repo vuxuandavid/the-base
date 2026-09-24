@@ -1,0 +1,42 @@
+---
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className = '' } = Astro.props;
+const words = text.split(' ');
+---
+
+<p class:list={['scroll-reveal', 'text-balance', className]}>
+  {
+    words.map((word) => (
+      <span class="scroll-reveal-word">
+        {word}{' '}
+      </span>
+    ))
+  }
+</p>
+
+<style>
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .scroll-reveal-word {
+        animation: reveal-word linear both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 40%;
+      }
+
+      @keyframes reveal-word {
+        from {
+          color: var(--color-cream-dim);
+          opacity: 0.3;
+        }
+        to {
+          color: inherit;
+          opacity: 1;
+        }
+      }
+    }
+  }
+</style>

@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import SectionHead from './SectionHead.astro';
 import wallArtImage from '../assets/images/wall-art.jpg';
+import ironBaconSlicedImage from '../assets/images/story-iron-bacon-sliced.jpg';
 ---
 
 <section id="geschichte" class="w-full py-[88px] px-6 bg-ochre text-cream scroll-mt-20">
@@ -45,7 +46,7 @@ import wallArtImage from '../assets/images/wall-art.jpg';
       />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-umber border-2 border-umber">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-umber border-2 border-umber">
       <div class="bg-ochre-dark p-8">
         <h4 class="font-display uppercase text-amber text-[20px] mb-3.5">
           Vom Baguette zum Bánh Mì
@@ -66,6 +67,17 @@ import wallArtImage from '../assets/images/wall-art.jpg';
           vietnamesischen Wurzeln waren die Inspiration, doch Kochen kennt keine Grenzen, also
           floss alles ein, was wir über die Jahre in der Gastronomie gelernt haben.
         </p>
+      </div>
+      <div class="relative min-h-[260px] md:col-span-2 lg:col-span-1 bg-ochre-dark">
+        <Image
+          class="absolute inset-0 w-full h-full object-cover"
+          src={ironBaconSlicedImage}
+          alt="Aufgeschnittener Schweinebauch mit knuspriger Kruste"
+          widths={[400, 800, 1200, 1600]}
+          sizes="(min-width: 1024px) 390px, 100vw"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </div>
   </div>

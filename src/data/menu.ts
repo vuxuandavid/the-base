@@ -87,9 +87,7 @@ export const thanksList: ThanksEntry[] = [
 ];
 
 export const marqueeItems: string[] = [
-  'Ngon. Bổ. Rẻ.',
-  'Lecker, nahrhaft und günstig.',
-  'Ein vietnamesisches Sprichwort und unser Leitfaden.',
+  'Fastfood mit Handwerk und Leidenschaft',
 ];
 
 export const navLinks = [

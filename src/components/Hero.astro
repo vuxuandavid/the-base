@@ -7,7 +7,9 @@ interface Props {
 }
 
 const { heroImage } = Astro.props;
-const items = [...marqueeItems, ...marqueeItems];
+// Repeat so each half of the loop is wider than the viewport
+const half = Array.from({ length: 4 }, () => marqueeItems).flat();
+const items = [...half, ...half];
 ---
 
 <section class="relative pt-[160px] overflow-hidden">
@@ -26,10 +28,9 @@ const items = [...marqueeItems, ...marqueeItems];
     </h1>
 
     <p class="font-medium text-cream-dim text-[19px] max-w-[480px] mb-8 leading-relaxed">
-      The Base steht für Qualität und kulinarischen Genuss und für die Überzeugung, dass
-      hochklassiges Essen nicht teuer sein muss. Aus unserer Freundschaft und der Vision, ein
-      neues, gesundes Fastfood auf dem deutschen Markt zu etablieren, wurde die Idee geboren: ein
-      Bánh Mì, das genauso beliebt wird wie Pizza, Burger, Currywurst mit Pommes oder Döner.
+      "Ich habe damals eine Doku über Goldies gesehen, in der Vladi erzählt hatte, er wolle was
+      bewegen, man könne auch aus Fast Food etwas Edles machen und dass die Leute es genießen
+      können mit gutem Gewissen..."
     </p>
 
     <div class="flex gap-4 flex-wrap">

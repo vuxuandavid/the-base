@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
+import storefront from '../assets/images/gallery/gallery-2.jpg';
+import interior from '../assets/images/gallery/gallery-4.jpg';
+import counter from '../assets/images/gallery/gallery-3.jpg';
+import shelves from '../assets/images/gallery/gallery-1.jpg';
+
+const slides = [
+  {
+    src: storefront,
+    alt: 'Ladenfront von The Base mit Bastdach, Pflanzen und dem Bánh-Mì-Menü am Eingang',
+    position: 'object-center',
+  },
+  {
+    src: interior,
+    alt: 'Innenraum mit Barhockern, Bildergalerie an der Wand und Kreidetafel-Menü über der Theke',
+    position: 'object-center',
+  },
+  {
+    src: counter,
+    alt: 'Gäste bestellen an der Theke unter der Kreidetafel mit Iron Bacon, Chicken Grip und Veggie Tank',
+    position: 'object-center',
+  },
+  {
+    src: shelves,
+    alt: 'Beleuchtetes Holzregal mit vietnamesischer Keramik und Laternen über der Sitzbank',
+    position: 'object-center',
+  },
+];
+---
+
+<section id="galerie" class="w-full py-[88px] px-6 bg-ochre text-cream scroll-mt-20" data-gallery>
+  <div class="max-w-[1180px] mx-auto">
+    <SectionHead
+      kicker="EINBLICKE"
+      title="Willkommen in der Base"
+      borderClass="border-cream-dim"
+      headingClass="text-cream"
+      kickerClass="text-cream"
+    >
+      <div class="flex gap-2">
+        <button
+          type="button"
+          data-gallery-prev
+          aria-label="Vorheriges Bild"
+          class="w-11 h-11 flex items-center justify-center border-2 border-cream text-cream hover:bg-cream hover:text-ochre transition-colors disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
+        >
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          data-gallery-next
+          aria-label="Nächstes Bild"
+          class="w-11 h-11 flex items-center justify-center border-2 border-cream text-cream hover:bg-cream hover:text-ochre transition-colors disabled:opacity-40 disabled:pointer-events-none cursor-pointer"
+        >
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+    </SectionHead>
+
+    <ul
+      data-gallery-track
+      aria-label="Bildergalerie von The Base"
+      class="flex gap-4 lg:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth overscroll-x-contain -mx-6 px-6 lg:mx-0 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
+      {
+        slides.map((slide, i) => (
+          <li
+            data-gallery-slide
+            class="shrink-0 basis-[86%] sm:basis-[70%] lg:basis-[calc((100%-3rem)/3)] snap-start scroll-ml-6 lg:scroll-ml-0"
+            aria-label={`Bild ${i + 1} von ${slides.length}`}
+          >
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              class:list={['w-full aspect-square object-cover border-4 border-umber bg-ochre-dark', slide.position]}
+              width={1000}
+              height={1000}
+              widths={[400, 600, 800, 1000]}
+              sizes="(min-width: 1024px) 380px, (min-width: 640px) 70vw, 86vw"
+              quality={65}
+              loading="lazy"
+              decoding="async"
+            />
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex justify-center gap-2.5 mt-6 lg:hidden" aria-hidden="true">
+      {slides.map(() => <span data-gallery-dot class="w-2.5 h-2.5 border-2 border-cream transition-colors" />)}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((gallery) => {
+    const track = gallery.querySelector<HTMLElement>('[data-gallery-track]');
+    const slides = Array.from(gallery.querySelectorAll<HTMLElement>('[data-gallery-slide]'));
+    const dots = Array.from(gallery.querySelectorAll<HTMLElement>('[data-gallery-dot]'));
+    const prev = gallery.querySelector<HTMLButtonElement>('[data-gallery-prev]');
+    const next = gallery.querySelector<HTMLButtonElement>('[data-gallery-next]');
+    if (!track || slides.length === 0) return;
+
+    const step = () => slides[0].offsetWidth + parseFloat(getComputedStyle(track).columnGap || '0');
+
+    function update() {
+      if (!track) return;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const index = Math.round(track.scrollLeft / step());
+      dots.forEach((dot, i) => dot.classList.toggle('bg-cream', i === index));
+      if (prev) prev.disabled = track.scrollLeft <= 2;
+      if (next) next.disabled = track.scrollLeft >= maxScroll - 2;
+    }
+
+    prev?.addEventListener('click', () => track.scrollBy({ left: -step() }));
+    next?.addEventListener('click', () => track.scrollBy({ left: step() }));
+
+    let frame = 0;
+    track.addEventListener(
+      'scroll',
+      () => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(update);
+      },
+      { passive: true }
+    );
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  });
+</script>

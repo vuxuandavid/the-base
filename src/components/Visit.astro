@@ -1,7 +1,14 @@
 ---
 import SectionHead from './SectionHead.astro';
 
-const rowClass = 'flex flex-wrap justify-between gap-x-4 gap-y-1 py-2.5 border-b border-dashed';
+const mapLink = 'https://maps.app.goo.gl/PoFWZfvvg4MYkB6q7';
+// Keyless embed of the place behind mapLink; only requested after the visitor clicks "Google Maps laden"
+const mapEmbedSrc =
+  'https://www.google.com/maps?q=' +
+  encodeURIComponent('THE BASE - Bánh Mì Sandwich aus Vietnam, Oranienburger Str. 6, 10178 Berlin') +
+  '&ll=52.5237449,13.4006661&z=17&output=embed';
+
+const rowClass ='flex flex-wrap justify-between gap-x-4 gap-y-1 py-2.5 border-b border-dashed';
 ---
 
 <section id="besuch" class="w-full py-[88px] px-6 bg-cream scroll-mt-20">
@@ -72,6 +79,55 @@ const rowClass = 'flex flex-wrap justify-between gap-x-4 gap-y-1 py-2.5 border-b
           </div>
         </dl>
       </div>
+      <div
+        class="md:col-span-2 relative bg-umber text-cream aspect-[4/3] sm:aspect-[16/7]"
+        data-map
+        data-src={mapEmbedSrc}
+      >
+        <div
+          class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 text-center"
+          data-map-consent
+        >
+          <p class="font-display uppercase text-[22px] sm:text-[26px] leading-tight">Karte anzeigen</p>
+          <p class="max-w-[520px] text-[14px] text-cream-dim">
+            Beim Laden der Karte werden Daten (u. a. Ihre IP-Adresse) an Google übertragen und
+            ggf. Cookies gesetzt. Mehr dazu in unserer
+            <a href="/datenschutz" class="underline hover:text-amber transition-colors"
+              >Datenschutzerklärung</a
+            >.
+          </p>
+          <button
+            type="button"
+            class="font-mono uppercase text-[13px] tracking-wide bg-chili text-cream px-5 py-3 border-2 border-cream hover:bg-amber hover:text-umber transition-colors"
+            data-map-load
+          >
+            Google Maps laden
+          </button>
+          <a
+            href={mapLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mono text-[12px] text-amber hover:text-cream transition-colors"
+            >Oder direkt in Google Maps öffnen</a
+          >
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((map) => {
+    map.querySelector('[data-map-load]')?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = map.dataset.src ?? '';
+      iframe.title = 'Standort von The Base auf Google Maps';
+      iframe.className = 'absolute inset-0 w-full h-full border-0';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.allowFullscreen = true;
+      map.querySelector('[data-map-consent]')?.remove();
+      map.appendChild(iframe);
+    });
+  });
+</script>

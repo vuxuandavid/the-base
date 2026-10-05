@@ -9,6 +9,7 @@ import Story from '../components/Story.astro';
 import Bread from '../components/Bread.astro';
 import Thanks from '../components/Thanks.astro';
 import Visit from '../components/Visit.astro';
+import Faq from '../components/Faq.astro';
 import Footer from '../components/Footer.astro';
 import heroSource from '../assets/images/iron-bacon.jpg';
 
@@ -28,6 +29,7 @@ const heroImage = await getImage({ src: heroSource, width: 1920, format: 'webp',
     <Bread />
     <Thanks />
     <Visit />
+    <Faq />
   </main>
   <Footer />
 </Layout>

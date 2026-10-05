@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import breadBasketImage from '../assets/images/bread-basket.jpg';
 ---
 
 <section class="w-full py-[88px] px-6 bg-amber text-umber">
@@ -28,10 +30,19 @@
           Die Inspiration verschmolz mit unserer Vision, wie es am besten schmeckt.
         </p>
       </div>
-      <div class="lg:flex lg:justify-center">
-        <p class="font-display uppercase text-[clamp(30px,4vw,52px)] lg:text-[clamp(72px,8vw,120px)] leading-none lg:leading-[0.9]">
-          Heiß aus<br />dem Ofen.<br />Jeden Tag<br /> frisch.
+      <div class="flex flex-col gap-6">
+        <p class="font-display uppercase text-[clamp(26px,3vw,40px)] leading-none">
+          Heiß aus dem Ofen.<br />Jeden Tag frisch.
         </p>
+        <Image
+          class="w-full border-4 border-umber"
+          src={breadBasketImage}
+          alt="Frisch aufgeschnittene Brote, gestapelt in einem Weidenkorb"
+          widths={[400, 800, 1200]}
+          sizes="(min-width: 1024px) 560px, 100vw"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </div>
   </div>

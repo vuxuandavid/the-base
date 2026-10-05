@@ -1,0 +1,101 @@
+---
+import SectionHead from './SectionHead.astro';
+
+const faqs = [
+  {
+    q: 'Wo finde ich vietnamesisches Bánh Mì in meiner Nähe in Berlin?',
+    a: 'Ihr findet The Base Bánh Mì in der Oranienburger Str. 6, 10178 Berlin, nur 2 Gehminuten vom S-Bahnhof Hackescher Markt entfernt.',
+  },
+  {
+    q: 'Was ist ein Bánh Mì?',
+    a: 'Das Bánh Mì ist ein vietnamesischer Klassiker mit französischen Wurzeln: ein knuspriges Baguette, gefüllt mit Fleisch oder Paté, eingelegtem Gemüse, frischen Kräutern, Fischsauce und Mayonnaise. Ein echter Fusionskracher aus Vietnam und Frankreich.',
+  },
+  {
+    q: 'Liefert ihr vietnamesisches Essen in Berlin?',
+    a: 'Ja, ihr könnt bei uns über Uber Eats, Wolt und Lieferando bestellen.',
+    order: true,
+  },
+  {
+    q: 'Was gibt es bei euch außer Bánh Mì?',
+    a: 'Aktuell konzentrieren wir uns voll auf Bánh Mì. Bleibt dran, weitere vietnamesische Gerichte sind in Planung.',
+  },
+  {
+    q: 'Habt ihr vegetarische und vegane Optionen?',
+    a: 'Ja. Unser Veggie Tank ist vegetarisch, ohne Mayo ist er vegan.',
+  },
+  {
+    q: 'Kann ich The Base Bánh Mì für eine Gruppe oder ein Büro-Mittagessen bestellen?',
+    a: 'Ja, ruft uns dafür bitte einen Tag vorher unter 01520 7078161 an.',
+    phone: true,
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+---
+
+<section id="faq" class="w-full py-[88px] px-6 bg-amber text-umber scroll-mt-20">
+  <div class="max-w-[1180px] mx-auto">
+    <SectionHead kicker="FAQ" title="Häufige Fragen" kickerClass="text-umber" />
+
+    <div class="border-t-2 border-umber">
+      {
+        faqs.map(({ q, a, order, phone }) => (
+          <details name="faq" class="group border-b-2 border-umber" data-faq-item>
+            <summary class="flex items-center gap-4 py-5 cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:text-chili transition-colors">
+              <span class="relative w-5 h-5 shrink-0" aria-hidden="true">
+                <span class="absolute top-1/2 left-0 w-full h-[3px] -translate-y-1/2 bg-current" />
+                <span class="absolute left-1/2 top-0 h-full w-[3px] -translate-x-1/2 bg-current group-open:hidden" />
+              </span>
+              <h3 class="font-display uppercase text-[18px] sm:text-[22px] leading-tight">{q}</h3>
+            </summary>
+            <div class="pl-9 pb-6 pr-2 max-w-[760px] text-[16px] leading-relaxed">
+              {phone ? (
+                <p>
+                  Ja, ruft uns dafür bitte einen Tag vorher unter{' '}
+                  <a href="tel:+4915207078161" class="underline whitespace-nowrap hover:text-chili transition-colors">
+                    01520 7078161
+                  </a>{' '}
+                  an.
+                </p>
+              ) : (
+                <p>{a}</p>
+              )}
+              {order && (
+                <button
+                  type="button"
+                  data-order-trigger
+                  class="mt-4 mono text-[12px] text-cream bg-umber border-2 border-umber px-4 py-2.5 transition-colors hover:bg-chili hover:border-chili cursor-pointer"
+                >
+                  Jetzt bestellen
+                </button>
+              )}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<script>
+  // Fallback for browsers without exclusive <details name> support: keep only one answer open
+  const items = document.querySelectorAll<HTMLDetailsElement>('[data-faq-item]');
+  items.forEach((item) =>
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      items.forEach((other) => {
+        if (other !== item) other.open = false;
+      });
+    })
+  );
+</script>

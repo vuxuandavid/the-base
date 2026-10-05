@@ -7,7 +7,10 @@ const anton = (subset) => `./node_modules/@fontsource/anton/files/anton-${subset
 // https://astro.build/config
 export default defineConfig({
   site: 'https://thebase.berlin',
+  // Clean URLs without trailing slash (/impressum), matching canonical and sitemap on Cloudflare Pages
+  trailingSlash: 'never',
   build: {
+    format: 'file',
     // The whole stylesheet is small; inlining it removes the render-blocking CSS request
     inlineStylesheets: 'always',
   },

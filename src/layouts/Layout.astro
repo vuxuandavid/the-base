@@ -20,7 +20,8 @@ const {
 const antonLatin = fontData['--font-anton']?.[0]?.src[0]?.url;
 
 const site = Astro.site ?? new URL('https://thebase.berlin');
-const canonical = new URL(Astro.url.pathname, site);
+// build.format 'file' emits /impressum.html; Cloudflare Pages serves it as /impressum
+const canonical = new URL(Astro.url.pathname.replace(/(index)?\.html$/, ''), site);
 const ogImage = await getImage({
   src: ogSource,
   width: 1200,

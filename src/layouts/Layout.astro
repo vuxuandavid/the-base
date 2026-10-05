@@ -1,15 +1,77 @@
 ---
 import '../styles/global.css';
+import { Font, fontData, getImage } from 'astro:assets';
+import ogSource from '../assets/images/iron-bacon.jpg';
 
 interface Props {
   title?: string;
   description?: string;
+  /** Adds the Restaurant structured data; only the home page should set this */
+  restaurantSchema?: boolean;
 }
 
 const {
-  title = 'The Base - Bánh Mì in Berlin',
-  description = 'The Base bringt vietnamesisches Bánh Mì nach Berlin: frisch belegt, ehrlich zusammengestellt, für alle bezahlbar. Ngon. Bổ. Rẻ.',
+  title = 'The Base – Vietnamesisches Bánh Mì in Berlin-Mitte',
+  description = 'Vietnamesisches Bánh Mì am Hackeschen Markt: frisch belegt, heiß serviert, ehrlich und bezahlbar. Oranienburger Str. 6, Berlin-Mitte. Mo–Sa 12–21 Uhr. Ngon. Bổ. Rẻ.',
+  restaurantSchema = false,
 } = Astro.props;
+
+// Preload only the Latin Anton file (first variant in astro.config.mjs); the other subsets load on demand
+const antonLatin = fontData['--font-anton']?.[0]?.src[0]?.url;
+
+const site = Astro.site ?? new URL('https://thebase.berlin');
+const canonical = new URL(Astro.url.pathname, site);
+const ogImage = await getImage({
+  src: ogSource,
+  width: 1200,
+  height: 630,
+  fit: 'cover',
+  format: 'jpg',
+  quality: 80,
+});
+const ogImageUrl = new URL(ogImage.src, site);
+
+const restaurant = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  '@id': `${site.origin}/#restaurant`,
+  name: 'The Base – Bánh Mì Sandwich aus Vietnam',
+  alternateName: 'The Base Bánh Mì',
+  description,
+  url: site.origin,
+  image: ogImageUrl.href,
+  telephone: '+49 1520 7078161',
+  email: 'hello@thebase.berlin',
+  servesCuisine: ['Vietnamesisch', 'Bánh Mì', 'Streetfood'],
+  priceRange: '€',
+  acceptsReservations: false,
+  hasMenu: `${site.origin}/#karte`,
+  paymentAccepted: 'Bargeld, Kartenzahlung ab 10 €',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Oranienburger Str. 6',
+    postalCode: '10178',
+    addressLocality: 'Berlin',
+    addressRegion: 'Berlin',
+    addressCountry: 'DE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 52.5237449, longitude: 13.4006661 },
+  hasMap: 'https://maps.app.goo.gl/PoFWZfvvg4MYkB6q7',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '12:00',
+      closes: '21:00',
+    },
+  ],
+  sameAs: [
+    'https://www.instagram.com/banhmibase',
+    'https://wolt.com/de/deu/berlin/restaurant/the-base-bnh-m-sandwich-aus-vietnam',
+    'https://www.ubereats.com/de/store/the-base-banh-mi-sandwich-aus-vietnam/WHC9mK2iXpu9emnROOGqWw',
+    'https://www.lieferando.de/speisekarte/banh-mi-base',
+  ],
+};
 ---
 
 <!doctype html>
@@ -17,16 +79,35 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#181310" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <Font cssVariable="--font-anton" />
+    {antonLatin && <link rel="preload" href={antonLatin} as="font" type="font/woff2" crossorigin />}
 
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="The Base Bánh Mì" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Iron Bacon Bánh Mì von The Base" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-    <title>{title}</title>
+    {
+      restaurantSchema && (
+        <script type="application/ld+json" set:html={JSON.stringify(restaurant)} />
+      )
+    }
     <slot name="head" />
   </head>
   <body>

@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import SectionHead from '../components/SectionHead.astro';
-import PlaceholderNote from '../components/PlaceholderNote.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -17,27 +16,21 @@ import Footer from '../components/Footer.astro';
       <SectionHead kicker="RECHTLICHES" title="Datenschutz" level="h1" />
 
       <div class="max-w-[720px] text-[16px] leading-relaxed">
-        <PlaceholderNote>
-          Sobald feststeht, wo die Seite gehostet wird, bitte den Hosting-Anbieter unten unter
-          „Hosting &amp; Server-Logfiles" eintragen sowie den vollständigen rechtlichen Namen des
-          Betreibers ergänzen (siehe Impressum).
-        </PlaceholderNote>
-
-        <h3 class="font-display uppercase text-[22px] text-chili mt-2 mb-3">
+        <h2 class="font-display uppercase text-[22px] text-chili mt-2 mb-3">
           Verantwortlicher
-        </h3>
+        </h2>
         <p class="mb-1">The Base</p>
-        <p class="mb-1">[Vollständiger Name des Betreibers / Firmenname]</p>
+        <p class="mb-1">Inh.: Van Khoi Pham</p>
         <p class="mb-1">Oranienburger Str. 6, 10178 Berlin</p>
         <p class="mb-8">
-          E-Mail: <a href="mailto:hello@thebasebanhmi.de" class="hover:text-chili transition-colors"
-            >hello@thebasebanhmi.de</a
+          E-Mail: <a href="mailto:hello@thebase.berlin" class="hover:text-chili transition-colors"
+            >hello@thebase.berlin</a
           >
         </p>
 
-        <h3 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">
+        <h2 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">
           Allgemeines zur Datenverarbeitung
-        </h3>
+        </h2>
         <p class="mb-8">
           Diese Website ist bewusst schlank gehalten: Sie besteht aus statischen Seiten ohne
           Kontaktformular, ohne Nutzerkonten und ohne Tracking- oder Analyse-Tools. Es werden
@@ -45,11 +38,12 @@ import Footer from '../components/Footer.astro';
           Website technisch notwendig ist.
         </p>
 
-        <h3 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">
+        <h2 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">
           Hosting &amp; Server-Logfiles
-        </h3>
+        </h2>
         <p class="mb-4">
-          Diese Website wird gehostet bei [Name &amp; Anschrift des Hosting-Anbieters]. Beim
+          Diese Website wird über Cloudflare Pages gehostet, einen Dienst der Cloudflare, Inc.,
+          101 Townsend St., San Francisco, CA 94107, USA. Beim
           Aufruf der Seite erhebt der Hostinganbieter automatisch technische Zugriffsdaten
           (sogenannte Server-Logfiles), die Ihr Browser übermittelt. Dazu gehören
           typischerweise:
@@ -63,17 +57,26 @@ import Footer from '../components/Footer.astro';
         </ul>
         <p class="mb-8">
           Diese Daten dienen der technischen Stabilität und Sicherheit der Website (Art. 6 Abs. 1
-          lit. f DSGVO) und werden nach kurzer Zeit automatisch gelöscht.
+          lit. f DSGVO) und werden nach kurzer Zeit automatisch gelöscht. Dabei können Daten
+          auch in die USA übertragen werden. Cloudflare ist nach dem EU-US Data Privacy Framework
+          zertifiziert, zusätzlich haben wir mit Cloudflare einen Vertrag zur
+          Auftragsverarbeitung geschlossen. Weitere Informationen:
+          <a
+            href="https://www.cloudflare.com/de-de/privacypolicy/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline hover:text-chili transition-colors">cloudflare.com/privacypolicy</a
+          >.
         </p>
 
-        <h3 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">Cookies</h3>
+        <h2 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">Cookies</h2>
         <p class="mb-8">
           Diese Website selbst setzt keine Cookies und keine vergleichbaren
           Speichertechnologien ein. Erst wenn Sie die Google-Maps-Karte aktiv laden (siehe
           unten), kann Google Cookies setzen.
         </p>
 
-        <h3 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">Google Maps</h3>
+        <h2 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">Google Maps</h2>
         <p class="mb-8">
           Im Bereich „Besucht The Base" kann eine Karte von Google Maps (Google Ireland Limited,
           Gordon House, Barrow Street, Dublin 4, Irland) angezeigt werden. Die Karte wird nicht
@@ -92,9 +95,9 @@ import Footer from '../components/Footer.astro';
           >.
         </p>
 
-        <h3 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">
+        <h2 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">
           Externe Links
-        </h3>
+        </h2>
         <p class="mb-8">
           Der Adress-Link und der Link „Oder direkt in Google Maps öffnen" im Bereich „Besucht The Base" führen zu Google Maps
           (Google Ireland Limited). Die Weiterleitung erfolgt ausschließlich als gewöhnlicher
@@ -108,14 +111,14 @@ import Footer from '../components/Footer.astro';
           >.
         </p>
 
-        <h3 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">Schriftarten</h3>
+        <h2 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">Schriftarten</h2>
         <p class="mb-8">
           Alle auf dieser Website verwendeten Schriftarten sind lokal eingebunden (selbst
           gehostet). Es findet keine Verbindung zu externen Schriftarten-Diensten wie Google
           Fonts statt, dabei werden keine Daten an Dritte übertragen.
         </p>
 
-        <h3 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">Ihre Rechte</h3>
+        <h2 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">Ihre Rechte</h2>
         <p class="mb-4">
           Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten
           personenbezogenen Daten sowie ein Recht auf Berichtigung, Sperrung, Löschung oder
@@ -129,9 +132,9 @@ import Footer from '../components/Footer.astro';
           Informationsfreiheit.
         </p>
 
-        <h3 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">
+        <h2 class="font-display uppercase text-[22px] text-chili mt-8 mb-3">
           Änderungen dieser Datenschutzerklärung
-        </h3>
+        </h2>
         <p>
           Wir passen diese Datenschutzerklärung an, sobald Änderungen an der Website oder den
           rechtlichen Vorgaben dies erforderlich machen.

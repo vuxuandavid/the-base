@@ -18,10 +18,9 @@ const rowClass ='flex flex-wrap justify-between gap-x-4 gap-y-1 py-2.5 border-b 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-umber border-2 border-umber">
       <div class="bg-cream p-6 sm:p-9">
         <a
-          href="https://maps.app.goo.gl/ktEgZcMCyHr69x5z9"
+          href={mapLink}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="The Base auf Google Maps öffnen, Bewertungen ansehen"
           class="inline-flex items-center gap-2 font-display uppercase text-[22px] sm:text-[26px] leading-tight mb-1.5 hover:text-chili transition-colors"
         >
           <svg
@@ -38,7 +37,7 @@ const rowClass ='flex flex-wrap justify-between gap-x-4 gap-y-1 py-2.5 border-b 
             <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
             <circle cx="12" cy="10" r="3"></circle>
           </svg>
-          <span>Oranienburger <span class="whitespace-nowrap">Str. 6</span></span>
+          <span>Oranienburger <span class="whitespace-nowrap">Str. 6</span><span class="sr-only"> auf Google Maps öffnen</span></span>
         </a>
         <p class="mono text-[12px] text-chili mb-7">10178 Berlin</p>
         <dl class="font-mono text-[14px]">
@@ -54,7 +53,7 @@ const rowClass ='flex flex-wrap justify-between gap-x-4 gap-y-1 py-2.5 border-b 
       </div>
       <div class="bg-ochre text-cream p-6 sm:p-9">
         <p class="font-display uppercase text-[22px] sm:text-[26px] mb-1.5">Kontakt</p>
-        <p class="mono text-[12px] text-amber mb-7">Abholung &amp; Anfragen</p>
+        <p class="mono text-[12px] text-cream mb-7">Abholung &amp; Anfragen</p>
         <dl class="font-mono text-[14px]">
           <div class:list={[rowClass, 'border-[rgba(243,232,214,0.3)]']}>
             <dt>Telefon</dt>
@@ -68,8 +67,8 @@ const rowClass ='flex flex-wrap justify-between gap-x-4 gap-y-1 py-2.5 border-b 
             <dt>E-Mail</dt>
             <dd class="min-w-0">
               <a
-                href="mailto:hello@thebasebanhmi.de"
-                class="hover:text-amber transition-colors break-all">hello@thebasebanhmi.de</a
+                href="mailto:hello@thebase.berlin"
+                class="hover:text-amber transition-colors break-all">hello@thebase.berlin</a
               >
             </dd>
           </div>

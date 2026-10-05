@@ -15,7 +15,8 @@ const { item } = Astro.props;
       src={item.image}
       alt={item.imageAlt}
       class="w-full h-full object-cover"
-      widths={[400, 600, 900]}
+      widths={[400, 600, 800]}
+      quality={70}
       sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
       loading="lazy"
       decoding="async"
@@ -28,7 +29,7 @@ const { item } = Astro.props;
     </h3>
     <p class="font-script text-amber text-[16px] mb-3">{item.subtitle}</p>
     <p class="text-[14px] text-cream-dim mb-4 leading-relaxed">{item.desc}</p>
-    <p class="mono text-[11px] text-[#a5927a] normal-case tracking-normal mb-4">
+    <p class="mono text-[11px] text-[#c4b39a] normal-case tracking-normal mb-4">
       {item.ingredients}
     </p>
     {

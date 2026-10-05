@@ -1,21 +1,29 @@
 ---
-import type { GetImageResult } from 'astro';
+import { Image } from 'astro:assets';
 import { marqueeItems } from '../data/menu';
+import heroSource from '../assets/images/iron-bacon.jpg';
 
-interface Props {
-  heroImage: GetImageResult;
-}
-
-const { heroImage } = Astro.props;
 // Repeat so each half of the loop is wider than the viewport
 const half = Array.from({ length: 4 }, () => marqueeItems).flat();
 const items = [...half, ...half];
 ---
 
-<section class="relative pt-[160px] overflow-hidden">
+<section class="relative isolate pt-[160px] overflow-hidden bg-umber">
+  <!-- Real <img> (not a CSS background) so the LCP image is discoverable early and sized per device -->
+  <Image
+    src={heroSource}
+    alt=""
+    class="absolute inset-0 -z-10 w-full h-full object-cover object-[center_65%]"
+    widths={[480, 640, 828, 1080, 1440, 1920]}
+    sizes="100vw"
+    quality={55}
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+  />
   <div
-    class="absolute inset-0 -z-10 bg-cover bg-[center_65%]"
-    style={`background-image: linear-gradient(180deg, rgba(20,14,9,0.55), rgba(20,14,9,0.86)), url('${heroImage.src}'); background-color: var(--color-umber);`}
+    class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(20,14,9,0.55),rgba(20,14,9,0.86))]"
+    aria-hidden="true"
   >
   </div>
 
@@ -25,12 +33,16 @@ const items = [...half, ...half];
       class="display text-cream text-[clamp(64px,11vw,150px)] mb-6 [text-shadow:6px_6px_0_var(--color-chili)]"
     >
       The<br />Base
+      <span
+        class="block mt-5 font-mono text-[13px] sm:text-[15px] tracking-[0.08em] text-amber leading-normal [text-shadow:none]"
+      >
+        Vietnamesisches Bánh Mì · Berlin-Mitte
+      </span>
     </h1>
 
     <p class="font-medium text-cream-dim text-[19px] max-w-[480px] mb-8 leading-relaxed">
-      "Ich habe damals eine Doku über Goldies gesehen, in der Vladi erzählt hatte, er wolle was
-      bewegen, man könne auch aus Fast Food etwas Edles machen und dass die Leute es genießen
-      können mit gutem Gewissen..."
+      Fast Food kann man auch anders machen, man kann daraus etwas Edles machen. Etwas, was die
+      Leute genießen können mit gutem Gewissen. Das war der Leitfaden.
     </p>
 
     <div class="flex gap-4 flex-wrap">

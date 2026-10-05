@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* Self-hosted fonts (zero third-party requests) — only the weights we use */
-@import "@fontsource/anton/400.css";
+/* Self-hosted fonts (zero third-party requests) — only the weights we use.
+   Anton is registered via the Astro Fonts API in astro.config.mjs. */
 @import "@fontsource/kalam/400.css";
 @import "@fontsource/kalam/700.css";
 @import "@fontsource/archivo/400.css";
@@ -13,7 +13,7 @@
 @import "@fontsource/ibm-plex-mono/600.css";
 
 @theme {
-  --font-display: "Anton", sans-serif;
+  --font-display: var(--font-anton);
   --font-script: "Kalam", cursive;
   --font-sans: "Archivo", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
@@ -24,6 +24,7 @@
   --color-chalk: #181310;
   --color-amber: #e2a13c;
   --color-chili: #c1352a;
+  --color-chili-light: #e8665a;
   --color-violet: #9b5fc0;
   --color-cream: #f3e8d6;
   --color-cream-dim: #d8c7a8;

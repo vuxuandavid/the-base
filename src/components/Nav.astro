@@ -5,13 +5,15 @@ import { navLinks } from '../data/menu';
 <nav
   class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-4 px-6 py-4 bg-chalk border-b-[3px] border-umber"
 >
-  <div
+  <a
+    href="/"
     translate="no"
     class="flex items-center gap-2 font-display text-cream text-[21px] uppercase tracking-wide"
   >
     THE BASE
     <span class="mono text-[10px] text-amber border border-amber px-1.5 py-0.5">BÁNH MÌ</span>
-  </div>
+    <span class="sr-only">, zur Startseite</span>
+  </a>
 
   <div class="hidden md:flex gap-8 mono text-[13px]">
     {
@@ -35,6 +37,7 @@ import { navLinks } from '../data/menu';
   </button>
 
   <button
+    type="button"
     id="nav-burger"
     aria-expanded="false"
     aria-controls="nav-mobile"

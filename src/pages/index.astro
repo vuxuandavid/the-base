@@ -1,5 +1,4 @@
 ---
-import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
@@ -11,18 +10,12 @@ import Thanks from '../components/Thanks.astro';
 import Visit from '../components/Visit.astro';
 import Faq from '../components/Faq.astro';
 import Footer from '../components/Footer.astro';
-import heroSource from '../assets/images/iron-bacon.jpg';
-
-const heroImage = await getImage({ src: heroSource, width: 1920, format: 'webp', quality: 75 });
 ---
 
-<Layout>
-  <Fragment slot="head">
-    <link rel="preload" as="image" href={heroImage.src} fetchpriority="high" />
-  </Fragment>
+<Layout restaurantSchema>
   <Nav />
   <main id="main-content">
-    <Hero heroImage={heroImage} />
+    <Hero />
     <Menu />
     <Atmosphere />
     <Story />

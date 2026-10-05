@@ -20,7 +20,7 @@ export const signatures: MenuItem[] = [
     code: 'NR. 01',
     name: 'Iron Bacon',
     subtitle: 'Knuspriger Schweinebauchbraten',
-    desc: 'Ein kulinarisches Kunstwerk: saftiges, aromatisches, zartes Fleisch mit bröselig krachender Kruste. Ein Kulturerbe, serviert in unserem Bánh Mì. Sehr zu empfehlen mit unserem hausgemachten Paté, das euch wohl ein WOW entlockt.',
+    desc: 'Ein kulinarisches Kunstwerk: saftiges, aromatisches, zartes Fleisch mit bröselig krachender Kruste. Ein Kulturerbe, serviert in unserem Bánh Mì. Sehr zu empfehlen mit unserem hausgemachten Paté, das euch sicher ein WOW entlockt.',
     ingredients: 'Gurke · Karotte · Rettich · Mango · Koriander · Mayo · Fischsauce · +2€ Paté',
     pateNote: 'vietnamesische Leberpastete. Passt hervorragend zu unseren Bánh Mì mit Fleisch.',
     price: '8,90 €',
@@ -94,6 +94,7 @@ export const navLinks = [
   { href: '/#karte', label: 'Karte' },
   { href: '/#geschichte', label: 'Geschichte' },
   { href: '/#besuch', label: 'Besuch' },
+  { href: '/#faq', label: 'FAQ' },
 ];
 
 export const legalLinks = [
